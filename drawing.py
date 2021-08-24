@@ -160,7 +160,8 @@ def draw(
         align_strokes=True,
         denoise_strokes=True,
         interpolation_factor=None,
-        save_file=None
+        save_file=None,
+        plot_end_points=True
 ):
     strokes = offsets_to_coords(offsets)
 
@@ -181,7 +182,8 @@ def draw(
         if eos == 1:
             coords = list(zip(*stroke))
             ax.plot(coords[0], coords[1], 'k')
-            ax.plot(x, y, 'ro')
+            if plot_end_points:
+                ax.plot(x, y, 'ro')
             stroke = []
     if stroke:
         coords = list(zip(*stroke))
